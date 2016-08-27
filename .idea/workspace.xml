@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f69fec0-e8c7-462a-80be-e8e3862c791f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IntermediatePy/2_1sonnets.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IntermediatePy/2_3Syntehisizing.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PythonMisc.iws" />
@@ -45,11 +45,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2_1sonnets.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2_1sonnets.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IntermediatePy/2_1sonnets.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
               <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2_3Syntehisizing.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/IntermediatePy/2_3Syntehisizing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -74,6 +84,7 @@
         <option value="$PROJECT_DIR$/IntermediatePy/1_checklist.py" />
         <option value="$PROJECT_DIR$/IntermediatePy/scrabbler.py" />
         <option value="$PROJECT_DIR$/IntermediatePy/2_1sonnets.py" />
+        <option value="$PROJECT_DIR$/IntermediatePy/2_3Syntehisizing.py" />
       </list>
     </option>
   </component>
@@ -158,7 +169,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.2_1sonnets">
+  <component name="RunManager" selected="Python.2_3Syntehisizing">
     <configuration default="false" name="1_checklist" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -206,6 +217,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PythonMisc" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IntermediatePy/2_1sonnets.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="2_3Syntehisizing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/IntermediatePy" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PythonMisc" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IntermediatePy/2_3Syntehisizing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -355,16 +383,18 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.1_checklist" />
       <item index="1" class="java.lang.String" itemvalue="Python.scrabbler" />
       <item index="2" class="java.lang.String" itemvalue="Python.2_1sonnets" />
+      <item index="3" class="java.lang.String" itemvalue="Python.2_3Syntehisizing" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.2_1sonnets" />
-        <item index="1" class="java.lang.String" itemvalue="Python.scrabbler" />
-        <item index="2" class="java.lang.String" itemvalue="Python.1_checklist" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.2_3Syntehisizing" />
+        <item index="1" class="java.lang.String" itemvalue="Python.2_1sonnets" />
+        <item index="2" class="java.lang.String" itemvalue="Python.scrabbler" />
+        <item index="3" class="java.lang.String" itemvalue="Python.1_checklist" />
       </list>
     </recent_temporary>
   </component>
@@ -469,6 +499,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntermediatePy/sonnet_words.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntermediatePy/2_3Syntehisizing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding />
         </state>
       </provider>
