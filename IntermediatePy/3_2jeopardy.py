@@ -17,7 +17,14 @@ query = """Select name, round from category where game = %d order by round """ %
 cursor.execute(query)
 results = cursor.fetchall()
 
+for result in results:
+    # round  0 = jeopardy round
+# round 1 = double jeopardy
+# round 2 = final jeopardy
 
+    name, round  =  result
+
+    print("Round %d: %s" %(round,name))
 
 
 
