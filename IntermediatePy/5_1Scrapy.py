@@ -2,19 +2,24 @@
 
 # Concepts
 
-# downloading stuff
+# downloading stuff\
+import urllib
 
 from bs4 import BeautifulSoup
-import urllib3
+from urllib.parse import urljoin
+from bs4 import BeatifulSoup
 
-http = urllib3.PoolManager()
+base_url = "http://apod.nasa.gov/apod/archivepix.html"
+content = urllib.request.urlopen(base_url).read()
 
-content = http.request("GET","http://apod.nasa.gov/apod/archivepix.html")
-# print(content.data)
-links =  BeautifulSoup(content.data,"lxml").findAll("a")
-for link in links:
-    # print(link)
-    print(link.get('href'))
+for link in BeautifulSoup(content, "lxml").findAll("a"):
+    print("FOllowing link: ", link)
+    href = urljoin(base_url, link["href"])
 
-
-    content = url
+    content = urllib.request.urlopen(href).read()
+    for img in BeautifulSoup(content, "lxml").findAll("img"):
+        img_href = urljoin(href,img["src"])
+        print("Downloading images ", img_href)
+        img_name = img_href.split("/")[-1]
+        download_directory = "~/Projects/PythonMisc"
+        urllib.request.urlretrieve(img_href, os.path.join(download_directory + "/" + img_name))
