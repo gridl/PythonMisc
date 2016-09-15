@@ -1,4 +1,7 @@
 import sys
+
+from abc import ABC, abstractmethod
+
 def print_table(objects, colnames,formatter):
     '''make a formatted table showing attributes from a list of objects'''
     formatter.headings(colnames)
@@ -6,16 +9,16 @@ def print_table(objects, colnames,formatter):
         rowdata = [str(getattr(obj, colname)) for colname in colnames]
         formatter.row(rowdata)
 
-class TableFormatter(object):
+class TableFormatter(ABC):
     def __init__(self, outfile=None):
         if outfile == None:
             outfile = sys.stdout
         self.outfile = outfile
     # serves as a design spec for making tables
-
+    @abstractmethod
     def headings(self,headers):
         raise NotImplementedError
-
+    @abstractmethod
     def row(self, rowdata):
         raise NotImplementedError
 
