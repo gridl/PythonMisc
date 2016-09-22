@@ -4,7 +4,6 @@
     <list default="true" id="4f69fec0-e8c7-462a-80be-e8e3862c791f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FlaskExamples/headlines/headlines.py" afterPath="$PROJECT_DIR$/FlaskExamples/headlines/headlines.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FlaskExamples/headlines/templates/home.html" afterPath="$PROJECT_DIR$/FlaskExamples/headlines/templates/home.html" />
     </list>
     <ignored path="PythonMisc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlaskExamples/headlines/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+            <state relative-caret-position="612">
+              <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -37,8 +36,8 @@
       <file leaf-file-name="headlines.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FlaskExamples/headlines/headlines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
+            <state relative-caret-position="-105">
+              <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -87,8 +86,8 @@
         <option value="$PROJECT_DIR$/MiscScripts/3_file.py" />
         <option value="$PROJECT_DIR$/MiscScripts/4_Functions.py" />
         <option value="$PROJECT_DIR$/FlaskExamples/app/hello.py" />
-        <option value="$PROJECT_DIR$/FlaskExamples/headlines/headlines.py" />
         <option value="$PROJECT_DIR$/FlaskExamples/headlines/templates/home.html" />
+        <option value="$PROJECT_DIR$/FlaskExamples/headlines/headlines.py" />
       </list>
     </option>
   </component>
@@ -800,16 +799,16 @@
     <entry file="file://$PROJECT_DIR$/MiscScripts/4_Functions.py" />
     <entry file="file://$PROJECT_DIR$/FlaskExamples/headlines/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+        <state relative-caret-position="612">
+          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlaskExamples/headlines/headlines.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
+        <state relative-caret-position="-105">
+          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

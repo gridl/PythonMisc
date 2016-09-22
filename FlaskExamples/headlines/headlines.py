@@ -5,9 +5,13 @@ import json
 from urllib.request import urlopen
 import urllib.parse
 import feedparser
+import datetime
+from flask import make_response
+
+
 app  = Flask(__name__)
-WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID=<apikey>"
-CURRENCY_URL = "https://openexchangerates.org//api/latest.json?app_id=<apikey>"
+
+
 
 
 RSS_FEEDS = {'bbc': 'http://feeds.bbci.co.uk/news/rss.xml',
@@ -42,8 +46,15 @@ def home():
     if not currency_to:
         currency_to = DEFAULTS['currency_to']
     rate,currencies = get_rate(currency_from, currency_to)
-    return render_template("home.html", articles=articles, weather=weather,currency_from=currency_from,
-                           currency_to=currency_to, rate=rate, currencies=sorted(currencies))
+    response = make_response(render_template("home.html", articles=articles, weather=weather,
+                                             currency_from=currency_from,currency_to=currency_to,rate=rate,
+                                             currencies=sorted(currencies)))
+    expires = datetime.datetime.now() + datetime.timedelta(days=365)
+    response.set_cookie("publication", publication, expires=expires)
+    response.set_cookie("city","city", expires=expires)
+    response.set_cookie("currency_from", currency_from, expires=expires)
+    response.set_cookie("currency_to", currency_to, expires=expires)
+    return response
 
 def get_news(query):
     if not query or query.lower() not in RSS_FEEDS:
