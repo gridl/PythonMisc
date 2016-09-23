@@ -12,7 +12,9 @@ from flask import make_response
 app  = Flask(__name__)
 
 
+WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID=<key>"
 
+CURRENCY_URL = "https://openexchangerates.org//api/latest.json?app_id=<key>"
 
 RSS_FEEDS = {'bbc': 'http://feeds.bbci.co.uk/news/rss.xml',
              'cnn': 'http://rss.cnn.com/rss/edition.rss',
@@ -24,6 +26,17 @@ DEFAULTS = {'publication':'bbc',
             'currency_from': 'GBP',
             'currency_to': 'USD'
             }
+
+#implement fallback logic
+def get_value_with_fallback(key):
+    if request.args.get(key):
+        return request.args.get(key)
+    if request.cookies.get(key):
+        return request.cookies.get(key)
+    return DEFAULTS[key]
+
+
+
 
 
 @app.route("/")
@@ -46,6 +59,15 @@ def home():
     if not currency_to:
         currency_to = DEFAULTS['currency_to']
     rate,currencies = get_rate(currency_from, currency_to)
+
+    #fall back logic to check for cookies
+    publication = request.args.get("publication")
+    if not publication:
+        publication = request.cookies.get("publication")
+        if not publication:
+            publication = DEFAULTS["publication"]
+
+
     response = make_response(render_template("home.html", articles=articles, weather=weather,
                                              currency_from=currency_from,currency_to=currency_to,rate=rate,
                                              currencies=sorted(currencies)))
