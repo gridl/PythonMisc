@@ -28,7 +28,7 @@ dbconfig.py
 *.log
 *.sql
 *.sqlite
-
+.idea/workspace.xml
 # OS generated files #
 ######################
 .DS_Store
