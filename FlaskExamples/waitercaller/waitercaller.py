@@ -10,6 +10,8 @@ from user import User
 from mockdbhelper import MockDBHelper as DBHelper
 from flask.ext.login import logout_user
 from passwordhelper import PasswordHelper
+from flask.ext.login import current_user
+import config
 
 
 DB= DBHelper()
@@ -82,7 +84,16 @@ def dashboard():
 def account():
     return render_template("account.html")
 
-
+@app.route("/account/createtable",methods=["POST"])
+@login_required
+def account_createtable():
+    tablename = request.form.get("tablenumber")
+    # to associate the table with an owner we use the flasklogin current_user functionality to get the current logged
+    #  in users ID
+    tableid = DB.add_table(tablename, current_user.get_id())
+    new_url = config.base_url + "/newrequest/" + tableid
+    DB.update_table(tableid, new_url)
+    return redirect(url_for('account'))
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
