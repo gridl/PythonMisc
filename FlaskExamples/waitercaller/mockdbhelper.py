@@ -19,9 +19,18 @@ class MockDBHelper:
         MOCK_TABLES.append({"_id":number, "number":number,"owner":owner})
         return number
 
-    def update_table(self, _id, url):
+    def update_table(self, _id, url): # to associate a URL with a table
         for table in MOCK_TABLES:
             if table.get("_id") == _id:
                 table["url"] = url
                 break
 
+    def get_tables(self, owner_id):
+        return MOCK_TABLES
+
+
+    def delete_table(self,table_id):
+        for i, table in enumerate(MOCK_TABLES):
+            if table.get("_id") == table_id:
+                del MOCK_TABLES[i]
+            break
