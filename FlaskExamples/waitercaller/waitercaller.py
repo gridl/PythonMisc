@@ -13,8 +13,6 @@ from passwordhelper import PasswordHelper
 from flask.ext.login import current_user
 import config
 from bitlyhelper import BitlyHelper
-import datetime
-from forms import RegistrationForm
 
 DB= DBHelper()
 PH = PasswordHelper()
@@ -26,8 +24,10 @@ app.secret_key = '3AtAYeEhaE5JODRZh0gBZdvoUKYYGoFdt4l34/W1Ajw0P6FOEb/edDmy3glE7s
 
 @app.route("/")
 def home():
-    registrationform = RegistrationForm()
-    return render_template("home.html", registrationform=registrationform)
+    return render_template("home.html")
+
+
+
 
 
 @app.route("/login", methods=['POST'])
@@ -63,26 +63,22 @@ def logout():
 
 @app.route("/register",methods=["POST"])
 def register():
-    form = RegistrationForm(request.form)
-    if form.validate():
-        if DB.get_user(form.email.data):
-            form.email.errors.append("Email address already registered")
-            return render_template('home.html', registrationform=form)
-        salt = PH.get_salt()
-        hashed = PH.get_hash(form.password2.data + salt)
-        DB.add_user(form.email.data, salt, hashed)
-        return redirect(url_for("home"))
-    return render_template("home.html", registrationform = form)
+    email = request.form.get("email")
+    pw1 = request.form.get("password")
+    pw2 = request.form.get("password2")
+    if not pw1 == pw2:
+        return redirect(url_for('home'))
+    if DB.get_user(email):
+        return redirect(url_for('home'))
+    salt = PH.get_salt()
+    hashed = PH.get_hash(pw1 + salt)
+    DB.add_user(email,salt, hashed)
+    return redirect(url_for('home'))
 
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    now = datetime.datetime.now()
-    requests = DB.get_requests(current_user.get_id())
-    for req in requests:
-        deltaseconds = (now - req['time']).seconds
-        req['wait_minutes'] = "{}.{}".format(((deltaseconds/60),str(deltaseconds % 60).zfill(2)))
-    return render_template("dashboard.html", requests=requests)
+    return render_template("dashboard.html")
 
 @app.route("/account")
 @login_required
@@ -107,19 +103,6 @@ def account_deletetable():
     tableid = request.args.get("tableid")
     DB.delete_table(tableid)
     return redirect(url_for('account'))
-
-
-@app.route("/newrequest/<tid>")
-def new_request(tid):
-    DB.add_request(tid,datetime.datetime.now())
-    return "Your request has been logged and a waiter will be with you shortly"
-
-@app.route("/dashboard/resolve")
-@login_required
-def dashboard_resolve():
-    request_id = request.args.get("request_id")
-    DB.delete_request(request_id)
-    return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
