@@ -12,11 +12,10 @@ from flask.ext.login import logout_user
 from passwordhelper import PasswordHelper
 from flask.ext.login import current_user
 import config
-from bitlyhelper import BitlyHelper
+
 
 DB= DBHelper()
 PH = PasswordHelper()
-BH = BitlyHelper() # to use bitly code , create a bitlyhelper object in the main application code
 
 app = Flask(__name__)
 login_manager = LoginManager(app)
@@ -83,8 +82,7 @@ def dashboard():
 @app.route("/account")
 @login_required
 def account():
-    tables = DB.get_tables(current_user.get_id())
-    return render_template("account.html", tables=tables)
+    return render_template("account.html")
 
 @app.route("/account/createtable",methods=["POST"])
 @login_required
@@ -93,15 +91,8 @@ def account_createtable():
     # to associate the table with an owner we use the flasklogin current_user functionality to get the current logged
     #  in users ID
     tableid = DB.add_table(tablename, current_user.get_id())
-    new_url = BH.shorten_url(config.base_url + "newrequest/" + tableid)
+    new_url = config.base_url + "/newrequest/" + tableid
     DB.update_table(tableid, new_url)
-    return redirect(url_for('account'))
-
-@app.route("/account/deletetable")
-@login_required
-def account_deletetable():
-    tableid = request.args.get("tableid")
-    DB.delete_table(tableid)
     return redirect(url_for('account'))
 
 if __name__ == '__main__':
