@@ -26,14 +26,15 @@ if config.test:
 else:
     from dbhelper import DBHelper
 
+DB = DBHelper()
+PH = PasswordHelper()
+BH = BitlyHelper()
+
 
 app = Flask(__name__)
 app.secret_key = "Gxf613UhGRkzAKd47R5daLrUelnlUL4L6AU4z0uu++TNBpdzhAolufHqPQiiEdn34pbE97bmXbN"
 login_manager = LoginManager(app)
 
-DB = DBHelper()
-PH = PasswordHelper()
-BH = BitlyHelper()
 
 
 @login_manager.user_loader
@@ -113,7 +114,7 @@ def account_createtable():
     form = CreateTableForm(request.form)
     if form.validate():
         tableid = DB.add_table(form.tablenumber.data, current_user.get_id())
-        new_url = BH.shorten_url(config.base_url + "newrequest/" + tableid)
+        new_url = BH.shorten_url(config.base_url + "newrequest/" + str(tableid))
         DB.update_table(tableid, new_url)
         return redirect(url_for('account'))
     return render_template("account.html", createtableform=form, tables=DB.get_tables(current_user.get_id()))
@@ -129,9 +130,9 @@ def account_deletetable():
 
 @app.route("/newrequest/<tid>")
 def new_request(tid):
-    DB.add_request(tid, datetime.datetime.now())
-    return "Your request has been logged and a waiter will be with you shortly"
-
+    if DB.add_request(tid, datetime.datetime.now()):
+        return "Your request has been logged and a waiter will be with you shortly"
+    return "There is already a request pending for this table."
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
