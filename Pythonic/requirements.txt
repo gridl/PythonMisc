@@ -1,0 +1,4 @@
+requests
+passlib
+records
+#pip install -r requirements.txt
