@@ -33,3 +33,21 @@ for string in strings:
 # S matches non whitespace
 # w matches alphanumeric
 # W matches non alphanumeric
+
+
+""" Finding multiple instances"""
+
+silly_string = 'the cat in the hat'
+pattern = 'the'
+#Errata
+match = re.search(pattern, silly_string)
+# there were two instances but we only found one
+print(match.group())
+# findall will find all instances
+print(re.findall(pattern, silly_string))
+
+# finditer returns iterator of match instances instead of the strings
+
+for match in re.finditer(pattern,silly_string):
+    s = "Found ' {group}' at {begin} :{end}".format(group=match.group(), begin=match.start(),end=match.end())
+    print(s)
