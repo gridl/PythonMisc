@@ -25,3 +25,6 @@ class Person:
         self.name = name
         self.drinker_age = age
 
+
+p = Person('Miguel', 30)
+p = Person('Niki', 13)
