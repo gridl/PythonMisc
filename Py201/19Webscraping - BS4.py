@@ -27,7 +27,7 @@ def twitter():
         tweet_text = tweets[item].get_text()
         print(tweet_text)
         dt = tweets[item].find('a','tweet-timestamp')
-        print('This was tweeted on ' + dt)
+        print('This was tweeted on ' + str(dt))
 
 
 if __name__ == '__main__':
