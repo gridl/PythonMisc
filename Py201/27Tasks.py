@@ -2,7 +2,7 @@ import asyncio
 import time
 async def my_task(seconds):
     """ A task to do for a number of seconds"""
-
+    # simulates a long running process
     print('This task is taking {} seconds to complete'.format(seconds))
     time.sleep(seconds)
     return 'task finished'
