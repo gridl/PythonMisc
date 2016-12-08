@@ -37,3 +37,8 @@ print(a[:5])
 #real    0m1.278s
 #user    0m0.787s
 #sys     0m0.473s
+
+# to embed
+# cython --embed cythonmulti.pyx
+
+# gcc
