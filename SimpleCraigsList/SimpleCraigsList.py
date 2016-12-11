@@ -1,5 +1,4 @@
 import smtplib
-import sys
 import time
 import colorlog
 import conf
@@ -10,7 +9,6 @@ from bs4 import BeautifulSoup
 site = 'http://portland.craigslist.org/search/muc?query=guitar'
 html = 'SimpleCraigsList/craigs.html'
 logger = colorlog.getLogger()
-sys.path.append('/Users/vsubr2/Projects/RedditBot/conf')
 allposts = []
 
 def fetch_search_results(query=None):
@@ -27,14 +25,13 @@ def parse_source():
     # logger.info('Printing Soup')
     # print(soup.prettify())
     # logger.info("Finding rows")
-    print(soup.prettify())
-    logger.info("Finding titles and links")
+    #print(soup.prettify())
+    #logger.info("Finding titles and links")
     for post in soup.find_all('a', class_='result-title hdrlnk'):
         posts = post.string, 'http://portland.craigslist.org/' + post['href']
         allposts.append(str(posts))
-    #return '\n'.join(allposts).encode('utf-8')
+    return '\n'.join(allposts).encode('utf-8')
 
-    print('\n'.join(allposts))
 
 
 def send_mail():
@@ -49,7 +46,7 @@ def send_mail():
 
 
 def by_schedule():
-    schedule.every().day.at("12:44").do(send_mail)
+    schedule.every().day.at("13:00").do(send_mail)
     while True:
         schedule.run_pending()
         time.sleep(1)
@@ -61,5 +58,5 @@ if __name__ == '__main__':
     logger.addHandler(handler)
     # fetch_search_results()
     parse_source()
-    #by_schedule()
+    by_schedule()
 
