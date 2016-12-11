@@ -56,7 +56,7 @@ if __name__ == '__main__':
     handler = colorlog.StreamHandler()
     handler.setFormatter(colorlog.ColoredFormatter())
     logger.addHandler(handler)
-    # fetch_search_results()
+    fetch_search_results()
     parse_source()
     by_schedule()
 

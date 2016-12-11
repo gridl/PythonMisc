@@ -1,0 +1,1 @@
+Simple script to email results from a craigslist scrape
