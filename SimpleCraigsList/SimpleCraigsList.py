@@ -12,6 +12,7 @@ logger = colorlog.getLogger()
 allposts = []
 
 def fetch_search_results(query=None):
+    logger.info('Fetching search results')
     resp = requests.get(site, timeout=3)
     resp.raise_for_status()
     file = open("craigs.html", "w")
@@ -21,6 +22,7 @@ def fetch_search_results(query=None):
 
 
 def parse_source():
+    logger.info("Parsing rows from HTML")
     soup = BeautifulSoup(open("craigs.html"), "lxml")
     # logger.info('Printing Soup')
     # print(soup.prettify())
@@ -33,8 +35,16 @@ def parse_source():
     return '\n'.join(allposts).encode('utf-8')
 
 
+def by_schedule():
+    logger.info("Reading schedule")
+    schedule.every().day.at("13:00").do(send_mail)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
 
 def send_mail():
+    logger.info("Connecting to mail server")
     server = smtplib.SMTP('smtp.mail.yahoo.com', 587)
     server.ehlo()
     server.starttls()
@@ -45,11 +55,7 @@ def send_mail():
     server.quit()
 
 
-def by_schedule():
-    schedule.every().day.at("13:00").do(send_mail)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+
 
 if __name__ == '__main__':
     logger.setLevel(colorlog.colorlog.logging.INFO)
