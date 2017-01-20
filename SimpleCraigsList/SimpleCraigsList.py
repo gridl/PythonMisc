@@ -37,7 +37,8 @@ def parse_source():
 
 def by_schedule():
     logger.info("Reading schedule")
-    schedule.every().day.at("13:00").do(send_mail)
+    schedule.every().day.at("09:45").do(send_mail)
+    schedule.every().day.at("09:48").do(send_mail)
     while True:
         schedule.run_pending()
         time.sleep(1)
