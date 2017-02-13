@@ -9,8 +9,8 @@ from flask_cache import Cache
 
 
 app = Flask(__name__ , instance_relative_config=True) #To load configuration variables from an instance folder. Use instance folders to keep them out of repo for passwords
-app.config.from_object('config') # myapp/config.py
-app.config.from_pyfile('config1.py') # From ExploreFlask/instance
+#app.config.from_object('config') # myapp/config.py
+#app.config.from_pyfile('config1.py') # From ExploreFlask/instance
 
 #normally include cache configuration settings in this call
 cache = Cache(app)
