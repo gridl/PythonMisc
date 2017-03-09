@@ -51,3 +51,25 @@ import threading
 some_lock = threading.Lock()
 with some_lock:
     print("Test text")
+
+#create a new object each time a function is called
+def append_to(element, to=None):
+    if to in None:
+        to = []
+    to.append(element)
+    return to
+
+"""" late binding closure """
+def create_multipliers():
+    return [lambda x: i * x for  i in range(5)]
+
+for multiplier in create_multipliers():
+    print(multiplier(2), end="...")
+print()
+# 8...8...8...8...8... due to late binding, values used in closures are looked up at the time the function is called
+
+def create_multpliers_notlatebinding():
+    return [lambda x, i = i: i  * x for i in range(5)]
+
+for multiplier in create_multpliers_notlatebinding():
+    print(multiplier(2))
