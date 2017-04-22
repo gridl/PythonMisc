@@ -48,6 +48,14 @@ for i in range(num_fetch_threads):
     worker.setDaemon(True)
     worker.start()
 
+# Download the feed(s) abd out the enclosure URLs into the queue
 
+for url in feed_urls:
+    response = feedparser.parse(url,agent='fetch_podcasts.py')
+    for entry in response['entries'][:5]:
+        for enclosure in entry.get('enclosures',[]):
+            parsed_url = urlparse(enclosure['url'])
+            message('queueing {}'.format(parsed_url.path.rpartition('/')[-1]))
+            enclosure_queue.put(enclosure['url'])
 
 
