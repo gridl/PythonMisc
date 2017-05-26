@@ -1,4 +1,5 @@
 import asyncio
+# define coroutines natively using async def and to yield control using await
 
 @asyncio.coroutine
 def outer():
