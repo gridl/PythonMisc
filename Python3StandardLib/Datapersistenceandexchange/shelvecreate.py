@@ -31,3 +31,4 @@ with shelve.open('test_shelf.db') as s:
 with shelve.open('test_shelf.db', writeback=True) as s:
     print(s['key1'])
 
+
