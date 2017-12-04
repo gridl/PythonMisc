@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api
-from flask_jwt import JWT, jwt_required
+from flask_jwt import JWT, jwt_required,current_identity
 
 app = Flask(__name__)
 
@@ -45,7 +45,8 @@ jwt = JWT(app, verify, identity)
 class PrivateResource(Resource):
     @jwt_required()
     def get(self):
-        return {"meaning of life": 42}
+        #return {"meaning of life": 42}
+        return dict(current_identity)
 
 api.add_resource(PrivateResource,'/private')
 if __name__ == '__main__':
@@ -61,3 +62,5 @@ if __name__ == '__main__':
 # curl -H "Content-Type: application/json" -X POST -d '{"username":"vish","password":"abc123"}' http://localhost:5000/auth
 
 # curl -X GET http://localhost:5000/api/v1/private -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MTIzNTM1NTksImlhdCI6MTUxMjM1MzI1OSwiaWRlbnRpdHkiOjEyMywibmJmIjoxNTEyMzUzMjU5fQ.hYibp1qr1kb0HxKSqIzrZBK8P2VgwD3h38AbyZJgERA"
+
+# curl -X GET http://localhost:5000/api/v1/private -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1MTIzNTM2MzAsImlkZW50aXR5IjoxMjMsImlhdCI6MTUxMjM1MzYzMCwiZXhwIjoxNTEyMzUzOTMwfQ.DOjF6E3cMRFiZI2hBACX2uYTjXURREhJ3qYA8lsEnBQ"
