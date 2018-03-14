@@ -24,6 +24,10 @@ def home_index():
 def get_users():
     return list_users()
 
+@app.route('/api/v1/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    return list_users(user_id)
+
 def list_users():
     conn  = sqlite3.connect("vish.db")
     print("Opened database sucessfully")
@@ -39,6 +43,25 @@ def list_users():
         api_list.append(a_dict)
         conn.close()
     return jsonify({'user_list':api_list})
+
+def list_user(user_id):
+    conn = sqlite3.connect("vish.db")
+    print("Opened database sucessfully")
+    api_list = []
+    cursor = conn.cursor()
+    cursor.execute("select * from users where id=?", (user_id,))
+    data = cursor.fetchall()
+    if len(data) != 0:
+        user = {}
+        user['username'] =data[0][0]
+        user['name'] = data[0][1]
+        user['email'] =data[0][2]
+        user['password'] = data[0][2]
+        user['id'] = data [0][4]
+    conn.close()
+    return jsonify(a_dict)
+
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000,debug=True)
