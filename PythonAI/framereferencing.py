@@ -33,3 +33,40 @@ def get_frame(cap, scaling_factor):
 if __name__ == '__main__':
     cap = cv2.VideoCapture(0)
 
+    # Define the scaling factor for the images
+    scaling_factor = 0.5
+
+    # Grab the current frame
+    prev_frame = get_frame(cap, scaling_factor)
+
+    # Grab the next frame
+    cur_frame = get_frame(cap, scaling_factor)
+
+    # Grab the frame after that
+    next_frame = get_frame(cap, scaling_factor)
+
+    # keep reading the frames from the webcam until user hits esc
+
+    while True:
+
+        cv2.imshow('Object Movement', frame_diff(prev_frame,cur_frame, next_frame))
+
+        # Update the variables
+        prev_frame = cur_frame
+        cur_frame = next_frame
+
+        # Grab the next frame
+
+        next_frame = get_frame(cap, scaling_factor)
+
+        #check if the user hits the 'esc' key
+        key = cv2.waitKey(10)
+        if key == 27:
+            break
+
+    #close all the windows
+    cv2.destroyAllWindows()
+
+
+
+
