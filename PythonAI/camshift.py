@@ -74,5 +74,67 @@ class ObjectTracker(object):
                 #Capture the frame from the webcam
                 _, self.frame = self.cap.read()
 
+                #resize the input frame
+                self.frame = cv2.resize(self.frame, None, fx=self.scaling_factor, fy=self.scaling_factor,interpolation=cv2.INTER_AREA)
+
+                #create a copy of the frame
+                vis = self.frame.copy()
+
+                #convert the frame to HSV colorspace
+                hsv = cv2.cvtColor(self.frame, cv2.COLOR_BGR2HSV)
+
+                #create the mask based on predefined
+                mask = cv2.inRange(hsv, np.array(0.,60.,32.)),np.array((180.,255.,255.))
+
+                #check if the user has select the region
+                if self.selection:
+                    x0,y0,x1,y1 = self.selection
+                    self.track_window = (x0,y0,x1-x0,y1-y0)
+
+                    hsv_roi = hsv[y0:y1,x0:x1]
+                    mask_roi = mask[y0:y1,x0:x1]
+
+                    hist = cv2.calcHist([hsv_roi],[0],mask_roi,[16],[0,180])
+
+                    cv2.normalize(hist,hist,0,255,cv2.NORM_MINMAX);
+                    self.hist = hist.reshape(-1)
+
+                    vis_roi = vis[y0:y1,x0:x1]
+
+                    cv2.bitwise_not(vis_roi,vis_roi)
+                    vis[mask ==0] =0
+
+                if self.tracking_state == 1:
+                    self.selection = None
+
+                    hsv_backproj = cv2.calcBackProject([hsv],[0], self.hist,[0,180],1)
+
+                    hsv_backproj &= mask
+
+                    term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,10,1)
+
+                    track_box, self.track_window = cv2.CamShift(hsv_backproj,self.track_window, term_crit)
+
+                    cv2.ellipse(vis,track_box,(0,255,0),2)
+
+                cv2.imshow('Object Tracker', vis)
+
+                c = cv2.waitKey(5)
+                if c ==27:
+                    break
+
+        cv2.destroyAllWindows()
+
+if __name__ == '__main__':
+    ObjectTracker().start_tracking()
+
+
+
+
+
+
+
+
+
 
 
